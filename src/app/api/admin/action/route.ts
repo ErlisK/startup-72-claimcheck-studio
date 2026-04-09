@@ -129,7 +129,7 @@ export async function POST(req: NextRequest) {
     const { data: inviteData, error: inviteErr } = await supabase.auth.admin.inviteUserByEmail(
       entry.email,
       {
-        redirectTo: `${appUrl}/api/auth/callback?next=/dashboard`,
+        redirectTo: `${appUrl}/auth/callback`,
         data: { name: entry.name, company: entry.company, role: entry.role },
       }
     );
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
       type: "magiclink",
       email: entry.email,
       options: {
-        redirectTo: `${appUrl}/api/auth/callback?next=/dashboard`,
+        redirectTo: `${appUrl}/auth/callback`,
       },
     });
 

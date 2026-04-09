@@ -54,9 +54,14 @@ export default function Home() {
         <span style={styles.logo}>
           <span style={styles.logoMark}>⬡</span> ClaimCheck Studio
         </span>
-        <a href="#early-access" style={styles.navCta}>
-          Request Early Access
-        </a>
+        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <a href="/login" style={{ color: "#888", fontSize: 14, textDecoration: "none" }}>
+            Sign in
+          </a>
+          <a href="#early-access" style={styles.navCta}>
+            Request Early Access
+          </a>
+        </div>
       </nav>
 
       {/* HERO */}
