@@ -145,6 +145,22 @@ export default function AdminPage() {
             >
               App Users ({users.length})
             </button>
+            <button
+              onClick={async () => {
+                setLoading(true); setMsg('');
+                try {
+                  const res = await fetch('/api/daily-digest', { method: 'POST', headers: { Authorization: 'Bearer ' + secret } });
+                  const json = await res.json();
+                  if (json.ok) setMsg('Digest sent! Leads: ' + (json.stats && json.stats.leads ? json.stats.leads.total : '?') + ' total');
+                  else setMsg('Error: ' + (json.error || 'Failed'));
+                } catch(e) { setMsg('Network error'); }
+                setLoading(false);
+              }}
+              disabled={loading}
+              style={{ padding: '8px 20px', borderRadius: 8, border: '1px solid #444', background: '#1a3a1a', color: '#4ade80', cursor: 'pointer' }}
+            >
+              Send Daily Digest
+            </button>
           </div>
         </div>
 
