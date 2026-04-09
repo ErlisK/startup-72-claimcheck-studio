@@ -44,24 +44,12 @@ export async function POST(req: NextRequest) {
 
   // Insert into waitlist (cc_waitlist table)
   const { error } = await supabase.from("cc_waitlist").insert({
-    name: name.trim(),
+    full_name: name.trim(),
     email: email.trim().toLowerCase(),
     company: company?.trim() || null,
     role: role || null,
     use_case: use_case?.trim() || null,
     status: "pending",
-    // Extended metadata stored in a jsonb column if available; gracefully ignored if not
-    meta: {
-      timestamp,
-      ip,
-      user_agent: userAgent,
-      referrer,
-      utm_source: utmSource,
-      utm_medium: utmMedium,
-      utm_campaign: utmCampaign,
-      utm_term: utmTerm,
-      utm_content: utmContent,
-    },
   });
 
   if (error) {
