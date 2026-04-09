@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
 
   // Insert into waitlist (cc_waitlist table)
   const { error } = await supabase.from("cc_waitlist").insert({
-    full_name: name.trim(),
+    name: name.trim(),
     email: email.trim().toLowerCase(),
     company: company?.trim() || null,
     role: role || null,

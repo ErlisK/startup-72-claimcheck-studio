@@ -15,7 +15,7 @@ export async function GET(req: NextRequest) {
   const supabase = createSupabaseAdminClient();
   const { data, error } = await supabase
     .from("cc_waitlist")
-    .select("id, full_name, email, company, role, use_case, status, invited_at, created_at")
+    .select("id, name, email, company, role, use_case, status, invited_at, created_at")
     .order("created_at", { ascending: false });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
